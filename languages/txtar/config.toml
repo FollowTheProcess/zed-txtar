@@ -1,0 +1,5 @@
+name = "Txtar"
+grammar = "txtar"
+path_suffixes = ["txtar"]
+line_comments = ["# "]
+brackets = [{ start = "--", end = "--", close = true, newline = false }]
