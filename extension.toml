@@ -1,6 +1,6 @@
 id = "txtar"
 name = "Txtar"
-version = "0.1.0"
+version = "0.2.0"
 schema_version = 1
 authors = ["Tom Fleet <me@followtheprocess.codes>"]
 description = "Language support for txtar files"
@@ -8,4 +8,4 @@ repository = "https://github.com/FollowTheProcess/zed-txtar"
 
 [grammars.txtar]
 repository = "https://github.com/FollowTheProcess/tree-sitter-txtar"
-commit = "157687ae1ec94222d11bea4025ec880c4e0d94c5"
+commit = "71f73a5d547e8cf7dc6ae87942070e31dbb46653"
