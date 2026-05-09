@@ -1,0 +1,113 @@
+# A txtar archive showcasing language injection.
+#
+# Open this file in Zed with the txtar dev extension installed and each
+# embedded block below should be syntax-highlighted in its own language.
+# Some languages (Zig, Nushell, Dockerfile, Make, TOML, Lua, ...) require
+# their respective Zed language extensions to be installed; the rest ship
+# with Zed.
+
+-- go.mod --
+module example.com/showcase
+
+go 1.22
+
+require github.com/google/uuid v1.6.0
+-- main.go --
+package main
+
+import (
+	"fmt"
+
+	"github.com/google/uuid"
+)
+
+func main() {
+	fmt.Println("hello,", uuid.New())
+}
+-- internal/util/util.go --
+package util
+
+func Add(a, b int) int { return a + b }
+-- hello.py --
+from __future__ import annotations
+
+
+def greet(name: str) -> str:
+    return f"hello, {name}"
+
+
+if __name__ == "__main__":
+    print(greet("world"))
+-- lib.rs --
+use std::fmt::Display;
+
+pub fn shout<T: Display>(value: T) -> String {
+    format!("{value}!").to_uppercase()
+}
+-- app.ts --
+type Greeting = { who: string };
+
+export const greet = ({ who }: Greeting): string => `hello, ${who}`;
+-- package.json --
+{
+  "name": "showcase",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc"
+  }
+}
+-- config.yaml --
+service: showcase
+replicas: 3
+labels:
+  tier: backend
+  owner: tfleet
+-- pyproject.toml --
+[project]
+name = "showcase"
+version = "0.1.0"
+requires-python = ">=3.11"
+-- README.md --
+# Showcase
+
+A demo archive used to verify language injection in the [txtar] Zed extension.
+
+- Embedded files keep their own highlighting.
+- Pre-marker text up top is highlighted as a `comment`.
+
+[txtar]: https://pkg.go.dev/golang.org/x/tools/txtar
+-- deploy.sh --
+#!/usr/bin/env bash
+set -euo pipefail
+
+for env in dev staging prod; do
+  echo "deploying to ${env}"
+done
+-- build.zig --
+const std = @import("std");
+
+pub fn build(b: *std.Build) void {
+    _ = b.standardTargetOptions(.{});
+}
+-- sysinfo.nu --
+def hostname-summary [] {
+  sys host | select hostname long_os_version uptime
+}
+-- Dockerfile --
+FROM alpine:3.20
+WORKDIR /app
+COPY . .
+CMD ["./deploy.sh"]
+-- Makefile --
+.PHONY: build test
+
+build:
+	go build ./...
+
+test:
+	go test ./...
+-- query.sql --
+SELECT id, name
+FROM users
+WHERE created_at >= now() - interval '7 days'
+ORDER BY created_at DESC;

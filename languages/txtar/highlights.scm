@@ -1,11 +1,8 @@
-;; Highlight comment lines (before first marker)
-(comment_line) @comment
+(comment) @comment
 
-;; Filename inside file marker
 (filename) @string.special.path
 
-;; Content of the file, highlight as generic text
-(file_content_line) @text
-
-;; Optional: highlight the full file_marker as punctuation
-(file_marker) @punctuation.delimiter
+[
+  (marker_start)
+  (marker_end)
+] @punctuation.delimiter
