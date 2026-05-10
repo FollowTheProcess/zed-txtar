@@ -111,3 +111,6 @@ SELECT id, name
 FROM users
 WHERE created_at >= now() - interval '7 days'
 ORDER BY created_at DESC;
+-- request.http --
+###
+GET https://github.com/FollowTheProcess/zed-txtar
